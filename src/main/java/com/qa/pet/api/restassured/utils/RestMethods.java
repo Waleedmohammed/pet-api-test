@@ -72,7 +72,7 @@ public class RestMethods {
                 pathParam(pathParamKey, pathParamValue).
                 when().get("{" + pathParamKey + "}").then()
                 .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("PetJsonSchema.json"))
-                .extract().response();
+                .extract().response().prettyPeek();
     }
 
 
@@ -85,7 +85,7 @@ public class RestMethods {
         return given().
                 spec(requestSpecification).
                 body(requestBody).
-                relaxedHTTPSValidation().when().post();
+                relaxedHTTPSValidation().when().post().prettyPeek();
     }
 
     /**

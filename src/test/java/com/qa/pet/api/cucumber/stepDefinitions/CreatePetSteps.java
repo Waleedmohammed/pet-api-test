@@ -68,28 +68,36 @@ public class CreatePetSteps {
 
     @When("adding the new pet to the store")
     public void addingTheNewPetToTheStore() throws JsonProcessingException {
-        log.info("When I created Pet with Data\n {}", TestHelpers.formateJsonObject(petData));
+        log.info("Request Sent *********\n{}", TestHelpers.formateJsonObject(petData));
 
+        log.info("Response Received *********\n");
         postResponse = restMethods.requestPOST(petData);
 
-        postPet = postResponse.as(PostPet.class);
-        log.info("I received response as\n {}", TestHelpers.formateJsonObject(postPet));
+        if (postResponse.getStatusCode() <= HttpStatus.SC_CREATED){
+            postPet = postResponse.as(PostPet.class);
+        }else {
+            postPet = null;
+        }
+
     }
 
 
     @Then("the pet is added successfully")
-    public void thePetIsAdded() throws JsonProcessingException {
+    public void thePetIsAdded() throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
         Assertions.assertEquals(HttpStatus.SC_CREATED, postResponse.getStatusCode(), "Not matching HTTP status Code");
 
         getResponse = restMethods.requestGET("petId", postPet.getId());
 
-        GetPet pet = getResponse.as(GetPet.class);
-        log.info("Pet Created with Below Data\n {}", TestHelpers.formateJsonObject(pet));
+        if (getResponse.getStatusCode()<=HttpStatus.SC_CREATED){
+            GetPet pet = getResponse.as(GetPet.class);
+            log.info("Pet Created with Below Data\n {}", TestHelpers.formateJsonObject(pet));
 
-        Assertions.assertEquals(mapper.readTree(TestHelpers.formateJsonObject(petData)), mapper.readTree(TestHelpers.formateJsonObject(pet)));
-
+            Assertions.assertEquals(mapper.readTree(TestHelpers.formateJsonObject(petData)), mapper.readTree(TestHelpers.formateJsonObject(pet)));
+        }else {
+            throw new Exception("Get Pet not success");
+        }
     }
 
 
@@ -111,8 +119,7 @@ public class CreatePetSteps {
 
     @Given("New pet with name {string}, age {int} , avatarUrl {string} and exceeded max Length Category")
     public void newPetWithNameNameAgeAgeAvatarUrlUrlAndExceededMaxLengthCategory(String name, Integer age, String url) {
-        petData = RequestGenerator.PetDataRequest(name, age, url, TestHelpers.getRandomAlphabetic(apiProperties.getMaxPetCategoryLength() + 1))
-                .build();
+        petData = RequestGenerator.PetDataRequest(name, age, url, TestHelpers.getRandomAlphabetic(apiProperties.getMaxPetCategoryLength() + 1)).build();
     }
 
     @Then("the pet can not be added due to validation error")
