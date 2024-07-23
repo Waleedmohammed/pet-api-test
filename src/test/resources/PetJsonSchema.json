@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "avatarUrl": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "maxLength": 50
+    }
+  },
+  "required": [
+    "name",
+    "age"
+  ]
+}
