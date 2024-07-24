@@ -44,12 +44,21 @@ public class GetSteps extends BaseSteps {
     @When("I try to get Pet from not valid path")
     public void iTryToGetPetFromNotValidPath() {
         restMethods = new RestMethods(apiProperties, apiProperties.getBasePath().toUpperCase());
-        apiTestHelpers = new ApiTestHelpers(apiProperties);
         getResponse = restMethods.requestGET("pet", 20);
     }
 
     @Then("I should get Not found path Error")
     public void iShouldGetNotFoundPathError() {
         verifyExpectedStatusCode(HttpStatus.SC_NOT_FOUND,getResponse.getStatusCode());
+    }
+
+    @When("I try to get Pet without providing Pet Id")
+    public void iTryToGetPetWithoutProvidingPetId() {
+        getResponse = restMethods.requestGET("pet", "");
+    }
+
+    @Then("I should get Bad Request Error")
+    public void iShouldGetBadRequestError() {
+        verifyExpectedStatusCode(HttpStatus.SC_BAD_REQUEST,getResponse.getStatusCode());
     }
 }

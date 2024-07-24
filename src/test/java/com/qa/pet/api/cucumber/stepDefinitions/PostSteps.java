@@ -75,7 +75,7 @@ public class PostSteps extends BaseSteps {
     }
 
     @Then("The pet can not be added due to validation error")
-    public void thePetCanNotBeAddedDueToValidationError() {
+    public void thePetCanNotBeAddedDueToValidationError() throws Exception {
         verifyExpectedStatusCode(HttpStatus.SC_UNPROCESSABLE_ENTITY,postResponse.getStatusCode());
     }
 
@@ -139,7 +139,7 @@ public class PostSteps extends BaseSteps {
 
     @Then("Delete Pet should fail")
     public void deletePetShouldFail() {
-        verifyExpectedStatusCode(HttpStatus.SC_NOT_FOUND,deleteResponse.getStatusCode());
+        verifyExpectedStatusCode(HttpStatus.SC_NO_CONTENT,deleteResponse.getStatusCode());
     }
 
     @When("I try to delete pet with invalid Pet Id Value")

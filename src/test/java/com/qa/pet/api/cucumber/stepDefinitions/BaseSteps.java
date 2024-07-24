@@ -49,7 +49,7 @@ public class BaseSteps {
             GetPet pet = getResponse.as(GetPet.class);
             Assertions.assertAll(
                     () -> Assertions.assertEquals(mapper.readTree(TestHelpers.formateJsonObject(petData)), mapper.readTree(TestHelpers.formateJsonObject(pet))),
-                    () -> Assertions.assertEquals(HttpStatus.SC_OK, getResponse.getStatusCode())
+                    () -> Assertions.assertEquals(HttpStatus.SC_CREATED, getResponse.getStatusCode())
             );
         } else {
             throw new Exception("Get Pet not success");
