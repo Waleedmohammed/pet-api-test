@@ -8,14 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GetPet {
-    public GetPet(String name, Integer age, String avatarUrl, String category) {
-        this.name = name;
-        this.age = age;
-        this.avatarUrl = avatarUrl;
-        this.category = category;
-    }
 
     @JsonProperty("name")
     private String name;

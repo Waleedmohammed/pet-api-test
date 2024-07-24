@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 public class ApiProperties {
 
     private String baseUrl;
+    private String basePath;
     private Integer maxPetCategoryLength;
 
 }

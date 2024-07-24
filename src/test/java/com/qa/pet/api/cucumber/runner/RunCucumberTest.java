@@ -5,7 +5,6 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.platform.suite.api.*;
 import org.junit.runner.RunWith;
 
-import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 
 @Suite
@@ -19,7 +18,6 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
         "usage:target/usage.json, " + // Statistic about step definitions (number of time each step executed)
         "rerun:target/rerun.txt") // text file includes the failed scenarios (input to rerun only failed test scenarios
 @ConfigurationParameter(key = "cucumber.publish.enabled", value = "true")
-//@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.qa.pet.api")
 @CucumberOptions(features = {"src/test/resources/features"})
 public class RunCucumberTest {
 }

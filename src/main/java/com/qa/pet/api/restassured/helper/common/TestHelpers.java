@@ -21,29 +21,15 @@ public class TestHelpers {
     }
 
     /**
+     * Generate random numeric string with given length
+     * Can be used for amount generation, so usage of '0' is restricted to avoid leading 0
+     * <p/>
      *
-     * @param min
-     * @param max
-     * @param userIDs: the list of userIDs returned from the get all users API
-     * @param fromTheList: a flag to indicate weather the calling function wants the rand number to be excluded/included if it is present in the userIDs list
-     * @return: a random number between min & max
+     * @param length Length of generated string
+     * @return Random string
      */
-    public static String getRandomNumber(int min, int max, List<String> userIDs, boolean fromTheList){
-        Random random = new Random();
-        int randomNum;
-        if(fromTheList){
-            // keep generating random numbers as long as the generated number is not in userIDs list to get a random number from the list
-            do {
-                randomNum = random.nextInt(max + min) + min;
-            } while (!userIDs.contains(String.valueOf(randomNum)));
-        }
-        else {
-            // keep generating random numbers as long as the generated number exists in userIDs list to get a new random number that does not exist in the list
-            do {
-                randomNum = random.nextInt(max + min) + min;
-            } while (userIDs.contains(String.valueOf(randomNum)));
-        }
-        return String.valueOf(randomNum);
+    public static String getRandomNumeric(Integer length) {
+        return RandomStringUtils.random(length, "123456789");
     }
 
     public static String formateJsonObject(Object jsonObject) throws JsonProcessingException {

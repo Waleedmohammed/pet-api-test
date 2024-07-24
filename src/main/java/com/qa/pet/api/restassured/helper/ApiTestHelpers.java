@@ -20,7 +20,7 @@ public class ApiTestHelpers {
 
     public ApiTestHelpers(ApiProperties apiProperties) {
         this.apiProperties = apiProperties;
-        restMethods = new RestMethods(apiProperties);
+        restMethods = new RestMethods(apiProperties, apiProperties.getBasePath());
     }
 
     public GetPet getDeserializedPet(Integer petId) {
