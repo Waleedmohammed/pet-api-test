@@ -11,12 +11,12 @@ Feature: Get Pet
     Then The pet is added successfully
     And I can get the added pet with its created data
 
-
+  @Finding2.2
   Scenario: Get not existing pet from store
     When I try to get not existing Pet
     Then I should get that Pet not found
 
-
+  @Finding2.4
   Scenario: Get pet from store given not valid petId
     When I try to get Pet with not valid petId
     Then I should get Not valid ID Error
@@ -26,7 +26,7 @@ Feature: Get Pet
     When I try to get Pet from not valid path
     Then I should get Not found path Error
 
-
+  @Finding2.4
   Scenario: Get pet from store without providing pet Id
     When I try to get Pet without providing Pet Id
     Then I should get Bad Request Error

@@ -1,7 +1,6 @@
 package com.qa.pet.api.cucumber.stepDefinitions;
 
 
-import com.qa.pet.api.restassured.deserialization.PostPet;
 import com.qa.pet.api.restassured.deserialization.ValidationErrorResponse;
 import com.qa.pet.api.restassured.factory.RequestGenerator;
 import com.qa.pet.api.restassured.helper.ApiTestHelpers;
@@ -12,10 +11,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Assertions;
 
 
+@Slf4j
 public class PostSteps extends BaseSteps {
 
     @Before()
@@ -39,6 +40,7 @@ public class PostSteps extends BaseSteps {
     @Then("The pet is added successfully")
     public void thePetIsAdded() {
         verifyExpectedStatusCode(HttpStatus.SC_CREATED,postResponse.getStatusCode());
+        Assertions.assertNotNull(postPet.getId());
     }
 
 
@@ -114,6 +116,7 @@ public class PostSteps extends BaseSteps {
     @Then("Update Pet Data should fail")
     public void updatePetDataShouldFail() {
         verifyExpectedStatusCode(HttpStatus.SC_BAD_REQUEST,putResponse.getStatusCode());
+        log.info("Update Pet Failed as Expected !");
     }
 
     @When("I delete the newly added pet")
@@ -139,7 +142,7 @@ public class PostSteps extends BaseSteps {
 
     @Then("Delete Pet should fail")
     public void deletePetShouldFail() {
-        verifyExpectedStatusCode(HttpStatus.SC_NO_CONTENT,deleteResponse.getStatusCode());
+        verifyExpectedStatusCode(HttpStatus.SC_NOT_FOUND,deleteResponse.getStatusCode());
     }
 
     @When("I try to delete pet with invalid Pet Id Value")
@@ -163,4 +166,33 @@ public class PostSteps extends BaseSteps {
         verifyExpectedStatusCode(HttpStatus.SC_NOT_FOUND,postResponse.getStatusCode());
     }
 
+    @When("I try to update the newly added Pet with exceeded category value length")
+    public void iTryToUpdateTheNewlyAddedPetWithExceededCategoryValueLength() {
+        petData = RequestGenerator.PetDataRequest(TestHelpers.getRandomAlphabetic(10),
+                Integer.parseInt(TestHelpers.getRandomNumeric(2)),
+                TestHelpers.getRandomAlphabetic(10)+".html",
+                TestHelpers.getRandomAlphabetic(52)).build();
+
+
+        putResponse = restMethods.requestPUT(petData, "petId", postPet.getId());
+    }
+
+    @When("I try to update the newly added Pet without providing name")
+    public void iTryToUpdateTheNewlyAddedPetWithoutProvidingName() {
+        petData = RequestGenerator.PetDataRequestWithoutName(
+                Integer.parseInt(TestHelpers.getRandomNumeric(2)),
+                TestHelpers.getRandomAlphabetic(10)+".html",
+                TestHelpers.getRandomAlphabetic(52)).build();
+
+        putResponse = restMethods.requestPUT(petData, "petId", postPet.getId());
+    }
+
+    @When("I try to update the newly added Pet without providing age")
+    public void iTryToUpdateTheNewlyAddedPetWithoutProvidingAge() {
+        petData = RequestGenerator.PetDataRequestWithoutAge(TestHelpers.getRandomAlphabetic(10),
+                TestHelpers.getRandomAlphabetic(10)+".html",
+                TestHelpers.getRandomAlphabetic(52)).build();
+
+        putResponse = restMethods.requestPUT(petData, "petId", postPet.getId());
+    }
 }

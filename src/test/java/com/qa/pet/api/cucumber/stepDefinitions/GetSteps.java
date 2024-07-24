@@ -8,7 +8,6 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.http.HttpStatus;
-import org.junit.jupiter.api.Assertions;
 
 
 public class GetSteps extends BaseSteps {

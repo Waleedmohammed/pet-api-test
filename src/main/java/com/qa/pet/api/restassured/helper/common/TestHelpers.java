@@ -3,11 +3,8 @@ package com.qa.pet.api.restassured.helper.common;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.qa.pet.api.restassured.deserialization.PostPet;
+import com.qa.pet.api.restassured.deserialization.PostPetResponse;
 import org.apache.commons.lang3.RandomStringUtils;
-
-import java.util.List;
-import java.util.Random;
 
 public class TestHelpers {
 
@@ -16,7 +13,7 @@ public class TestHelpers {
      * @param postPetResponse: get pet response deserialized object
      * @return: id of created pet
      */
-    public static Integer getPetID(PostPet postPetResponse){
+    public static Integer getPetID(PostPetResponse postPetResponse){
         return postPetResponse.getId();
     }
 

@@ -2,8 +2,8 @@ package com.qa.pet.api.cucumber.stepDefinitions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.pet.api.restassured.conf.ApiProperties;
-import com.qa.pet.api.restassured.deserialization.GetPet;
-import com.qa.pet.api.restassured.deserialization.PostPet;
+import com.qa.pet.api.restassured.deserialization.GetPetResponse;
+import com.qa.pet.api.restassured.deserialization.PostPetResponse;
 import com.qa.pet.api.restassured.helper.ApiTestHelpers;
 import com.qa.pet.api.restassured.helper.common.TestHelpers;
 import com.qa.pet.api.restassured.serialization.PetData;
@@ -38,7 +38,7 @@ public class BaseSteps {
 
     public PetData petData;
 
-    public PostPet postPet;
+    public PostPetResponse postPet;
 
 
     protected void getPetAndValidateResponse() throws Exception {
@@ -46,10 +46,10 @@ public class BaseSteps {
         getResponse = restMethods.requestGETAndValidateSchema("petId", postPet.getId());
 
         if (getResponse.getStatusCode() <= HttpStatus.SC_CREATED) {
-            GetPet pet = getResponse.as(GetPet.class);
+            GetPetResponse pet = getResponse.as(GetPetResponse.class);
             Assertions.assertAll(
                     () -> Assertions.assertEquals(mapper.readTree(TestHelpers.formateJsonObject(petData)), mapper.readTree(TestHelpers.formateJsonObject(pet))),
-                    () -> Assertions.assertEquals(HttpStatus.SC_CREATED, getResponse.getStatusCode())
+                    () -> Assertions.assertEquals(HttpStatus.SC_OK, getResponse.getStatusCode())
             );
         } else {
             throw new Exception("Get Pet not success");
@@ -60,12 +60,12 @@ public class BaseSteps {
         Assertions.assertEquals(expectedStatusCode, actualStatusCode, "Expected status code should be " + expectedStatusCode + " however it is " + actualStatusCode + " !... Please raise critical bug");
     }
 
-    protected PostPet executePostPet(Object requestBody) {
+    protected PostPetResponse executePostPet(Object requestBody) {
 
         postResponse = restMethods.requestPOST(requestBody);
 
         if (postResponse.getStatusCode() <= HttpStatus.SC_CREATED) {
-            return postResponse.as(PostPet.class);
+            return postResponse.as(PostPetResponse.class);
         } else {
             return null;
         }

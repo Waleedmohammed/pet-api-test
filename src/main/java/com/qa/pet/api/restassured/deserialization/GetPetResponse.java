@@ -1,6 +1,5 @@
 package com.qa.pet.api.restassured.deserialization;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,19 +7,19 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class GetPet {
+public class GetPetResponse {
 
     @JsonProperty("name")
-    private String name;
+    String name;
 
     @JsonProperty("age")
-    private Integer age;
+    Integer age;
 
     @JsonProperty("avatarUrl")
-    private String avatarUrl;
+    String avatarUrl;
 
     @JsonProperty("category")
-    private String category;
+    String category;
 
 }
 

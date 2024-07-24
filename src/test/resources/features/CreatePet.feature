@@ -4,6 +4,7 @@ Feature: Create New Pet
   I WANT TO use pet API to add pet
   SO THAT I can view it later on
 
+  @Finding2.1
   Scenario Outline: Add new pet to store with valid pet data
     Given New pet with name <name>, age <age> , avatarUrl <url> and category <category>
     When Adding the new pet to the store
@@ -27,7 +28,7 @@ Feature: Create New Pet
     When Adding the new pet to the store
     Then The pet can not be added
 
-
+  @Finding3
   Scenario: Add new pet to store with exceeded length category
     Given New pet with name "NewPet", age 20 , avatarUrl "NewUrl" and exceeded max Length Category
     When Adding the new pet to the store

@@ -10,10 +10,13 @@ public class ValidationErrorResponse {
 
     @JsonProperty("statusCode")
     Integer statusCode;
+
     @JsonProperty("code")
     String code;
+
     @JsonProperty("error")
     String error;
+
     @JsonProperty("message")
     String message;
 

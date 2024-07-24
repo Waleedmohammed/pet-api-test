@@ -13,5 +13,7 @@ public class ApiProperties {
     private String baseUrl;
     private String basePath;
     private Integer maxPetCategoryLength;
+    private String mockHost;
+    private Integer mockPort;
 
 }

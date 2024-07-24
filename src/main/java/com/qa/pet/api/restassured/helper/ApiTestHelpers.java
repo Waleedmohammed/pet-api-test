@@ -3,8 +3,8 @@ package com.qa.pet.api.restassured.helper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.qa.pet.api.restassured.conf.ApiProperties;
-import com.qa.pet.api.restassured.deserialization.GetPet;
-import com.qa.pet.api.restassured.deserialization.PostPet;
+import com.qa.pet.api.restassured.deserialization.GetPetResponse;
+import com.qa.pet.api.restassured.deserialization.PostPetResponse;
 import com.qa.pet.api.restassured.serialization.PetData;
 import com.qa.pet.api.restassured.utils.RestMethods;
 import io.restassured.response.Response;
@@ -23,14 +23,14 @@ public class ApiTestHelpers {
         restMethods = new RestMethods(apiProperties, apiProperties.getBasePath());
     }
 
-    public GetPet getDeserializedPet(Integer petId) {
+    public GetPetResponse getDeserializedPet(Integer petId) {
         Response response = restMethods.requestGET("petId", petId);
-        return response.as(GetPet.class);
+        return response.as(GetPetResponse.class);
     }
 
-    public PostPet getPetIdDeserialized(PetData petData) throws JsonProcessingException {
+    public PostPetResponse getPetIdDeserialized(PetData petData) throws JsonProcessingException {
         Response response = restMethods.requestPOST(petData);
-        return response.as(PostPet.class);
+        return response.as(PostPetResponse.class);
     }
 
 }

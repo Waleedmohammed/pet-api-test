@@ -1,6 +1,7 @@
 package com.qa.pet.api.restassured.utils;
 
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
 import static com.qa.pet.api.restassured.factory.ConfigFactory.getDefaultConfig;
@@ -11,7 +12,7 @@ public class RequestSpecs {
         return new RequestSpecBuilder()
                 .setBaseUri(baseUrl)
                 .setBasePath(basePath)
-                .addHeader("Content-Type","application/json")
+                .addHeader("Content-Type", ContentType.JSON.toString())
                 .setConfig(getDefaultConfig())
                 .build();
     }
