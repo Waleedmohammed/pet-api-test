@@ -22,3 +22,8 @@ Feature: Delete Pet
   Scenario: Delete Pet with invalid Pet Id Value
     When I try to delete pet with invalid Pet Id Value
     Then Delete Pet should fail due to validation error
+
+  @Finding2.4
+  Scenario: Delete Pet without providing Pet Id Value
+    When I try to delete pet with without providing Pet Id Value
+    Then Delete Pet should fail due to validation error

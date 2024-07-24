@@ -1,5 +1,9 @@
 Feature: Handling network issues and server errors
 
+  AS A user
+  I WANT TO get correct handling in case of network issues and server errors
+  SO THAT I can correctly monitor pet api
+
   @MockTCs
   Scenario: Server returns 500 Internal Server Error for GET Request
     Given The server returns a 500 Internal Server Error for get request

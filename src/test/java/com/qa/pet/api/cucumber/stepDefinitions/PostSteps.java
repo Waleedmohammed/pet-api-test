@@ -195,4 +195,9 @@ public class PostSteps extends BaseSteps {
 
         putResponse = restMethods.requestPUT(petData, "petId", postPet.getId());
     }
+
+    @When("I try to delete pet with without providing Pet Id Value")
+    public void iTryToDeletePetWithWithoutProvidingPetIdValue() {
+        deleteResponse = restMethods.requestRemove("/pet", "petId", "");
+    }
 }
