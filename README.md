@@ -13,6 +13,7 @@ A framework designed to test PET API with 4 endpoints
 - [Features](#Features)
 - [Framework Structure](#Framework_Structure)
 - [What is covered](#What_is_covered)
+- [What is not covered](#What_is_not_covered)
 - [How To Run Tests](#How_To_Run_Tests)
 
 ## Features
@@ -68,6 +69,13 @@ This testing framework cover :
 3. Negative case scenarios
 4. Schema request + response validation
 
+## What_is_not_covered
+Below testing activities were not covered in scope of this framework:
+1. Security Testing : it is important testing activity which needs to be considered to make sure that API can handle possible security breaches
+   like sql injections . OWASP can be used as reference fo applying some security checks
+2. Performance Testing : one vital non-functional testing activity which needs to be considered to make sure that our API can handle expected load on Production
+
+
 ## How_To_Run_Tests
 There are options options how you can run the tests:
 1. *Docker:* This involves building a Docker image and running it in a container.
@@ -108,4 +116,6 @@ There are options options how you can run the tests:
 1. Navigate to src/main/resources/application.properties and change property test.api.base-url from "http://pet-app:3000/api" to "http://localhost:3000/api"
 2. Run ``` mvn clean install -Dmaven.test.skip=true ```
 3. You can run tests from Test runner class "src/test/java/com/qa/pet/api/cucumber/runner/RunCucumberTest.java"
+
+
    

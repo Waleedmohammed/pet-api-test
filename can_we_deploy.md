@@ -56,10 +56,4 @@ working product but with many findings which make me definitely recommending not
    **My recommendation** : Apply validation on Category field max length received in case of POST/PUT methods request . If it is >50 digits , reply back with 400 Bad Request Status Code
    
    **Steps to reproduce**: Run command ``` mvn clean test -D"cucumber.filter.tags=@Finding3" ```
-
-4. Response TimeOut case is not handled properly
-
-   **My recommendation** : Handle response time out be responding back with proper status code
-
-   **Steps to reproduce**: Run command ``` mvn clean test -D"cucumber.filter.tags=@MockTCs" ```
   
