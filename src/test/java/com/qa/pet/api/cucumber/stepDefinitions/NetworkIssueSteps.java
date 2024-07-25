@@ -3,6 +3,7 @@ package com.qa.pet.api.cucumber.stepDefinitions;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -11,10 +12,13 @@ import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.response.Response;
+import lombok.extern.slf4j.Slf4j;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Slf4j
+@WireMockTest
 public class NetworkIssueSteps extends BaseSteps {
 
     private WireMockServer wireMockServer;
@@ -56,6 +60,7 @@ public class NetworkIssueSteps extends BaseSteps {
 
     @Then("I should receive a {int} Internal Server Error")
     public void theClientShouldReceiveAInternalServerError(int statusCode) {
+        log.info("Received Status code = {}",response.getStatusCode());
         assertEquals(statusCode, response.getStatusCode());
     }
 
