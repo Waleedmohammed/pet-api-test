@@ -80,7 +80,7 @@ Below testing activities were not covered in scope of this framework:
 
 
 ## How_To_Run_Tests
-There are options options how you can run the tests:
+There are 3 options how you can run the tests:
 1. *Docker:* This involves building a Docker image and running it in a container.
 2. *maven:* using maven to build and run tests from cmd
 3. *Intillij:* for running and debugging tests
