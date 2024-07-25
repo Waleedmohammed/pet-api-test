@@ -109,7 +109,7 @@ There are 3 options how you can run the tests:
 3. Run ``` mvn clean install ```
 4. You should be able to check terminal logs for viewing test results and also to browse cucumber HTML URL
 
-### Intillij
+### IntelliJ
 #### Prerequisites
  * Java installed
  * Maven installed
