@@ -71,9 +71,12 @@ This testing framework cover :
 
 ## What_is_not_covered
 Below testing activities were not covered in scope of this framework:
-1. Security Testing : it is important testing activity which needs to be considered to make sure that API can handle possible security breaches
+1. *Security Testing* : it is important testing activity which needs to be considered to make sure that API can handle possible security breaches
    like sql injections . OWASP can be used as reference fo applying some security checks
-2. Performance Testing : one vital non-functional testing activity which needs to be considered to make sure that our API can handle expected load on Production
+2. *Performance Testing* : one vital non-functional testing activity which needs to be considered to make sure that our API can handle expected load on Production
+3. *Unit Testing* : I observed that there is no unit tests exist on application project , It is really important to have sufficient unit tests 
+   this will help to catch potential bugs as much as possible in early development phases
+4. *Integration Testing*: The API integration with other interfaces should be tested to make sure that both interfaces can communicate to each other as expected
 
 
 ## How_To_Run_Tests
