@@ -1,15 +1,13 @@
-version: '3.8'
-
 services:
-  app:
+  pet-app:
     image: fad-qa-task-app
     container_name: fad-qa-task-app
     ports:
       - "3000:3000"
       - "8080:8080"
 
-  test-fw:
+  pet-tests:
     build: .
     container_name: pet-test-image
     depends_on:
-      - app
+      - pet-app

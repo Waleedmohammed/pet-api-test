@@ -1,4 +1,4 @@
-package com.qa.pet.api.restassured.helper.common;
+package com.qa.pet.api.restassured.helper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,14 +8,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 public class TestHelpers {
 
-    /**
-     *
-     * @param postPetResponse: get pet response deserialized object
-     * @return: id of created pet
-     */
-    public static Integer getPetID(PostPetResponse postPetResponse){
-        return postPetResponse.getId();
-    }
 
     /**
      * Generate random numeric string with given length
@@ -29,12 +21,21 @@ public class TestHelpers {
         return RandomStringUtils.random(length, "123456789");
     }
 
+
+    /**
+     * Formate Json Object
+     * <p/>
+     *
+     * @param jsonObject Json Object before converting to String
+     * @return Json Object as formated string
+     */
     public static String formateJsonObject(Object jsonObject) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         String bodyJsonString = mapper.writeValueAsString(jsonObject);
         Object formatedJsonObject = mapper.readValue(bodyJsonString, Object.class);
         return mapper.writeValueAsString(formatedJsonObject);
     }
+
 
     /**
      * Generate random alphabetic string with given length

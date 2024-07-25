@@ -32,4 +32,7 @@ RUN mvn --version
 # Verify Java installation
 RUN java --version
 
-Run mvn clean test
+Run mvn clean install -Dmaven.test.skip=true
+
+# Set the entrypoint
+ENTRYPOINT ["top", "-b"]

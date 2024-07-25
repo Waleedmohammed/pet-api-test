@@ -1,8 +1,7 @@
 package com.qa.pet.api.cucumber.stepDefinitions;
 
 
-import com.qa.pet.api.restassured.helper.ApiTestHelpers;
-import com.qa.pet.api.restassured.helper.common.TestHelpers;
+import com.qa.pet.api.restassured.helper.TestHelpers;
 import com.qa.pet.api.restassured.utils.RestMethods;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
@@ -16,7 +15,6 @@ public class GetSteps extends BaseSteps {
     @Before()
     public void setUp() {
         restMethods = new RestMethods(apiProperties, apiProperties.getBasePath());
-        apiTestHelpers = new ApiTestHelpers(apiProperties);
     }
 
     @When("I try to get not existing Pet")

@@ -4,8 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.pet.api.restassured.conf.ApiProperties;
 import com.qa.pet.api.restassured.deserialization.GetPetResponse;
 import com.qa.pet.api.restassured.deserialization.PostPetResponse;
-import com.qa.pet.api.restassured.helper.ApiTestHelpers;
-import com.qa.pet.api.restassured.helper.common.TestHelpers;
+import com.qa.pet.api.restassured.helper.TestHelpers;
 import com.qa.pet.api.restassured.serialization.PetData;
 import com.qa.pet.api.restassured.utils.RestMethods;
 import io.restassured.response.Response;
@@ -28,8 +27,6 @@ public class BaseSteps {
     ApiProperties apiProperties;
 
     RestMethods restMethods;
-
-    public ApiTestHelpers apiTestHelpers;
 
     public Response postResponse;
     public Response getResponse;

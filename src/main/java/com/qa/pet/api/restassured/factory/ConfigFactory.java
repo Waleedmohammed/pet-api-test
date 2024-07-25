@@ -2,12 +2,8 @@ package com.qa.pet.api.restassured.factory;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ser.FilterProvider;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import io.restassured.RestAssured;
 import io.restassured.config.*;
-import io.restassured.http.ContentType;
-import io.restassured.listener.ResponseValidationFailureListener;
 import io.restassured.path.json.mapper.factory.Jackson2ObjectMapperFactory;
 
 

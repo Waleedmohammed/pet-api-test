@@ -3,8 +3,7 @@ package com.qa.pet.api.cucumber.stepDefinitions;
 
 import com.qa.pet.api.restassured.deserialization.ValidationErrorResponse;
 import com.qa.pet.api.restassured.factory.RequestGenerator;
-import com.qa.pet.api.restassured.helper.ApiTestHelpers;
-import com.qa.pet.api.restassured.helper.common.TestHelpers;
+import com.qa.pet.api.restassured.helper.TestHelpers;
 import com.qa.pet.api.restassured.utils.RestMethods;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -22,7 +21,6 @@ public class PostSteps extends BaseSteps {
     @Before()
     public void setUp() {
         restMethods = new RestMethods(apiProperties, apiProperties.getBasePath());
-        apiTestHelpers = new ApiTestHelpers(apiProperties);
     }
 
 
